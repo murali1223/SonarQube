@@ -1,4 +1,4 @@
-# Prereuisites
+# Prerequisites
 # Launch ec2 amzon linux macine with 2gb ram and 15gb harddisk #((It's madatory otherwise memory issues will raise))
 # Java-11 is mandatory to run SonarQube 
   Install java 11 --> jdk-11.0.5_linux-x64_bin.rpm
