@@ -1,0 +1,99 @@
+# Prereuisites
+# Launch ec2 amzon linux macine with 2gb ram and 15gb harddisk #((It's madatory otherwise memory issues will raise))
+# Java-11 is mandatory to run SonarQube 
+  Install java 11 --> jdk-11.0.5_linux-x64_bin.rpm
+  rpm -ivth jdk-11.0.5_linux-x64_bin.rpm
+# To check the java path 
+  alternatives --config java   --> /usr/java/jdk-11.0.5/bin/java
+# To set java path 
+  vim /etc/profile.d/java.sh
+  export JAVA_HOME=/usr/java/jdk-11.0.5/bin/java
+  
+# Install Sonarqube 8
+  sonarqube-8.0.zip
+  Unzip the sonarqube file 
+  unzip sonarqube-8.0.zip
+
+# Create user like sonaradmin
+  useradd sonaradmin
+  passwd sonaradmin
+# usermod -a -G sonaradmin --> the usermod command modifies a user account
+# Note: changing the owner ship persmissions for /opt direcrory ((where sonarqube is available we changing entire directory))
+  chown -R sonaradmin:sonaradmin sonarqube
+# Note: Switch to sonaradmin user . In root user output will not come properly 
+  su - sonaradmin
+# goto below directory and enable(Uncomment) port number 
+  vim /opt/sonarqube/conf/sonar.properties
+  sonar.web.host=0.0.0.0
+  sonar.web.port=9000
+# goto below dirctory and add java path in wrapper.conf
+  vim /opt/sonarqube/conf/wrapper.conf
+  wrapper.java.command=/usr/java/jdk-11.0.5/bin/java
+# Start sonarqube 
+  cd /opt/sonarqube/bin/linux-x86-64/
+  ./sonar.sh start --> Sonarqube is started
+# (It's showing like this)
+  Starting SonarQube...
+  SonarQube is already running.  
+  vim sonar.sh start --> To check the sonarqube status 
+  
+# Now check the port is listening or not 
+-->  netstat -plntu
+  (Not all processes could be identified, non-owned process info
+ will not be shown, you would have to be root to see it all.)
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+tcp        0      0 0.0.0.0:111             0.0.0.0:*               LISTEN      -
+tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      -
+tcp        0      0 127.0.0.1:32000         0.0.0.0:*               LISTEN      3917/java
+tcp6       0      0 :::111                  :::*                    LISTEN      -
+tcp6       0      0 :::22                   :::*                    LISTEN      -
+tcp6       0      0 127.0.0.1:9092          :::*                    LISTEN      4725/java
+tcp6       0      0 127.0.0.1:46247         :::*                    LISTEN      4988/java
+tcp6       0      0 :::9000                 :::*                    LISTEN      4725/java             #((Port is listening))
+tcp6       0      0 127.0.0.1:9001          :::*                    LISTEN      3947/java
+udp        0      0 0.0.0.0:68              0.0.0.0:*                           -
+udp        0      0 0.0.0.0:111             0.0.0.0:*                           -
+udp        0      0 127.0.0.1:323           0.0.0.0:*                           -
+udp        0      0 0.0.0.0:798             0.0.0.0:*                           -
+udp6       0      0 :::111                  :::*                                -
+udp6       0      0 ::1:323                 :::*                                -
+udp6       0      0 fe80::16:3cff:fe5b::546 :::*                                -
+udp6       0      0 :::798                  :::*                                -
+
+
+# Now you can copy the ipaddress and paste in browser with port number
+  http://13.233.15.170:9000
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
