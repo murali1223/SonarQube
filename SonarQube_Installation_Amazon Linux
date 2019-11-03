@@ -70,6 +70,26 @@ udp6       0      0 :::798                  :::*                                
   
   
   
+##### ISSUES #####
+1) Sonarqube is not running in java 1.8, ist requries- Oracle java 11
+2) Sonarqube is not ruuning because java path is not running in- wrapper.txt
+3) Sonarqube is not running because amazon linux is 1gb ram- it requries more than 2gb ram 
+4) Sonarqube is not running because permisssions denied - all permisssion is under sonaradmin:sonaradmin user 
+5) Sonarqube is not running because es.log permissions under root -we have to change that permissions under sonaradmmin
+    find / -iname es.log
+    ls -l /opt/sonarqube/logs/es.log   
+    -rw-r--r-- 1 root root 26830 Nov  3 06:10 /opt/sonarqube/logs/es.log
+    chown -R sonaradmin:sonaradmin /opt/*
+    ls -l /opt/sonarqube/logs/es.log
+    -rw-r--r-- 1 sonaradmin sonaradmin 26830 Nov  3 06:10 /opt/sonarqube/logs/es.log
+    ./sonarqube/bin/linux-x86-64/sonar.sh start
+Now it will work finally .........!
+
+  
+  
+  
+  
+  
   
   
   
